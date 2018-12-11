@@ -26,5 +26,10 @@ public class equipmentServiceImpl implements IequipmentService {
         return equipmentDao.delequipment(id);
     }
 
+    @Override
+    public boolean addequipment(equipment e) {
+        return equipmentDao.addequipment(e);
+    }
+
 
 }

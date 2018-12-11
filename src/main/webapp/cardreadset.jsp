@@ -33,7 +33,7 @@
     <div class="form-group horizontal" style="width: 400px">
         <div class="col-sm-9">
             <label for="name" class="col-sm-3 control-label"  style="width:110px;margin-top: 5px">读卡模块名:</label>
-            <input type="text" class="form-control" id="name" placeholder="请输入读卡模块名" name="projectname" style="width: 150px">
+            <input type="text" class="form-control" id="name" placeholder="请输入读卡模块名" name="name" style="width: 150px">
         </div>
     </div>
     <div class="input-group horizontal" style="width: 200px;margin-right: 10px">
@@ -103,6 +103,26 @@
 
     function update(com) {
         location.reload();
+    }
+    function add() {
+        var name = $("#name").val();
+        var com = $("#com").val();
+        $.ajax({
+            type: "POST",
+            url: "${pageContext.request.contextPath}/cardreadadd.do",
+            dataType: 'json',
+            data: {
+                "name":name,
+                "com":com
+            },
+            success: function(){
+                window.location.replace("${pageContext.request.contextPath}/cardreadset.do");
+            },
+            error: function(){
+                window.location.replace("${pageContext.request.contextPath}/cardreadset.do");
+            }
+        });
+
     }
 
 

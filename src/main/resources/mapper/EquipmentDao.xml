@@ -10,4 +10,8 @@
     <delete id="delequipment" parameterType="java.lang.String">
         delete from equipment where id = #{id}
     </delete>
+    <insert id="addequipment" parameterType="com.ServerLocal.model.equipment">
+        INSERT INTO equipment (id,name,com,status)
+        VALUES (#{id},#{name},#{com},#{status})
+    </insert>
 </mapper>

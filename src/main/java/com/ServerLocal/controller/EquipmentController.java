@@ -32,6 +32,9 @@ public class EquipmentController {
         ModelAndView retMap = new ModelAndView();  //返回新的ModelAndView
         retMap.setViewName("../../cardreadset");
         List<equipment> Listequipment=equipmentService.selectequipment();
+        statics s=new statics();
+        s.setCardreadcom(Listequipment);
+        System.out.println("cardreadcom:" + s.getCardreadcom().size());
         com c=new com();
         List<equipment> equipmentlist=new ArrayList<>();
         List<String> comlist=c.listPorts();
@@ -41,6 +44,10 @@ public class EquipmentController {
             e.setCom(comname);
             equipmentlist.add(e);
             System.out.println("port name :"+e);
+        }
+        for (int i=0;i<Listequipment.size();i++){
+            equipment e=Listequipment.get(i);
+            if (!e.getCom().contains("COM")) Listequipment.remove(i);
         }
         model.addAttribute("list", equipmentlist);
         model.addAttribute("Listequipment", Listequipment);
@@ -53,6 +60,21 @@ public class EquipmentController {
         ModelAndView retMap = new ModelAndView();  //返回新的ModelAndView
         equipmentService.delequipment(id);
         retMap.setViewName("redirect:/cardreadset.do");
+        return retMap;
+    }
+
+    @RequestMapping("/cardreadadd.do")
+    @ResponseBody
+    public ModelAndView cardreadadd(String name,String com,Model model,HttpServletRequest request) {
+        ModelAndView retMap = new ModelAndView();  //返回新的ModelAndView
+        retMap.setViewName("redirect:/cardreadset.do");
+        equipment e=new equipment();
+        e.setCom(com);
+        e.setName(name);
+        statics s=new statics();
+        e.setId(Integer.toString(s.getCardreadcom().size()+1));
+        e.setStatus("0");
+        equipmentService.addequipment(e);
         return retMap;
     }
 }
