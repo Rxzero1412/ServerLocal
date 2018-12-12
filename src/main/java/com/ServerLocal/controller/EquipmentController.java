@@ -39,6 +39,7 @@ public class EquipmentController {
             equipmentlist.add(e);
             System.out.println("port name :"+e);
         }
+
         List<equipment> equipmentlists=new ArrayList<>();
         for (int i=0;i<Listequipment.size();i++){
             equipment e=Listequipment.get(i);
