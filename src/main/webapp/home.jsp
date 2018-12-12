@@ -115,7 +115,6 @@
                     <a class="" href="javascript:;">读卡模块</a>
                     <dl class="layui-nav-child">
                         <dd style="margin-left: 10px" onclick="Cardreaderset()">设置</dd>
-                        <dd style="margin-left: 10px">日志信息</dd>
                     </dl>
                 </li>
             </ul>
@@ -123,7 +122,7 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">监控模块</a>
                     <dl class="layui-nav-child" id="layer-child">
-                        <dd style="margin-left: 10px">监控设置</dd>
+                        <dd style="margin-left: 10px"onclick="monitorset()">监控设置</dd>
                         <dd style="margin-left: 10px">实时监控</dd>
                     </dl>
                 </li>
@@ -165,9 +164,12 @@
     });
 </script>
 <script type="text/javascript">
-   function Cardreaderset(){
-       $("#iframeid").attr("src", '${pageContext.request.contextPath}/cardreadset.do');
-   }
+    function Cardreaderset(){
+        $("#iframeid").attr("src", '${pageContext.request.contextPath}/cardreadset.do');
+    }
+    function monitorset(){
+        $("#iframeid").attr("src", '${pageContext.request.contextPath}/monitorset.do');
+    }
 </script>
 </body>
 </html>
