@@ -33,7 +33,7 @@
     <div class="form-group horizontal" style="width: 400px">
         <div class="col-sm-9">
             <label for="name" class="col-sm-3 control-label"  style="width:110px;margin-top: 5px">读卡模块名:</label>
-            <input type="text" class="form-control" id="name" placeholder="请输入读卡模块名" name="name" style="width: 150px">
+            <input type="text" class="form-control" id="name" placeholder="请输入读卡模块名" name="projectname" style="width: 150px">
         </div>
     </div>
     <div class="input-group horizontal" style="width: 200px;margin-right: 10px">
@@ -79,15 +79,15 @@
                 <td>
                     <c:choose>
                         <c:when test="${g.status==1}">
-                            <a href="${pageContext.request.contextPath}/equipmentupdate.do?temp=0&id=${g.id}&status=1">开启</a>
+                            <a href="${pageContext.request.contextPath}/admindetails.do">开启</a>
                         </c:when>
                         <c:otherwise>
-                            <a href="${pageContext.request.contextPath}/equipmentupdate.do?temp=0&id=${g.id}&status=0">关闭</a>
+                            <a href="${pageContext.request.contextPath}/showaddnext.do">关闭</a>
                         </c:otherwise>
                     </c:choose>
                 </td>
                 <td>
-                    <a href="${pageContext.request.contextPath}/equipmentdel.do?temp=0&id=${g.id}">删除</a>
+                    <a href="${pageContext.request.contextPath}/cardreaddel.do?id=${g.id}">删除</a>
                 </td>
             </tr>
         </c:forEach>
@@ -103,28 +103,6 @@
 
     function update(com) {
         location.reload();
-    }
-    function add() {
-        var name = $("#name").val();
-        var com = $("#com").val();
-        var temp="0";
-        $.ajax({
-            type: "POST",
-            url: "${pageContext.request.contextPath}/equipmentadd.do",
-            dataType: 'json',
-            data: {
-                "name":name,
-                "com":com,
-                "temp":temp
-            },
-            success: function(){
-                window.location.replace("${pageContext.request.contextPath}/cardreadset.do");
-            },
-            error: function(){
-                window.location.replace("${pageContext.request.contextPath}/cardreadset.do");
-            }
-        });
-
     }
 
 
