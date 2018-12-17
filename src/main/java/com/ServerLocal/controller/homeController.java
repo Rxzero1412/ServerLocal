@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class homeController {
-    //初始化
+    /**
+     * 首页
+     * */
     @RequestMapping("/home.do")
     @ResponseBody
     public ModelAndView home(User user,Model model,HttpServletRequest request) {

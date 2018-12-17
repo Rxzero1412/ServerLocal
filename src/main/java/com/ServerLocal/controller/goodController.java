@@ -1,10 +1,7 @@
 package com.ServerLocal.controller;
 
 import com.ServerLocal.model.Graduation_goods_sql;
-import com.ServerLocal.model.equipment;
-import com.ServerLocal.service.IequipmentService;
 import com.ServerLocal.service.IgoodssqlService;
-import com.ServerLocal.util.com;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +21,9 @@ public class goodController  {
     @Resource
     private IgoodssqlService goodssqlService;
 
+    /**
+     * 显示商品种类信息
+     * */
     @RequestMapping("/showgoodssql.do")
     @ResponseBody
     public ModelAndView showgoodssql(Model model,HttpServletRequest request) {
@@ -36,6 +35,9 @@ public class goodController  {
         return retMap;
     }
 
+    /**
+     * 添加商品信息
+     * */
     @RequestMapping("/addgoodssql.do")
     @ResponseBody
     public ModelAndView addgoodssql(Model model,

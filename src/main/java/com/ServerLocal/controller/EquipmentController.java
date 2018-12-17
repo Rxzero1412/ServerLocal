@@ -1,10 +1,7 @@
 package com.ServerLocal.controller;
 
-import com.ServerLocal.model.User;
 import com.ServerLocal.model.equipment;
-import com.ServerLocal.service.IUserService;
 import com.ServerLocal.service.IequipmentService;
-import com.ServerLocal.util.Utils;
 import com.ServerLocal.util.com;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 @Controller
@@ -23,6 +18,9 @@ public class EquipmentController {
     @Resource
     private IequipmentService equipmentService;
 
+    /**
+     * 读卡器设置
+     * */
     @RequestMapping("/cardreadset.do")
     @ResponseBody
     public ModelAndView cardreadset(Model model,HttpServletRequest request) {
@@ -50,6 +48,9 @@ public class EquipmentController {
         return retMap;
     }
 
+    /**
+     * 监控设备设置
+     * */
     @RequestMapping("/monitorset.do")
     @ResponseBody
     public ModelAndView monitorset(Model model,HttpServletRequest request) {
@@ -66,6 +67,9 @@ public class EquipmentController {
         return retMap;
     }
 
+    /**
+     * 删除读卡器
+     * */
     @RequestMapping("/equipmentdel.do")
     @ResponseBody
     public ModelAndView equipmentdel(String temp,String id,Model model,HttpServletRequest request) {
@@ -76,6 +80,9 @@ public class EquipmentController {
         return retMap;
     }
 
+    /**
+     * 添加读卡器
+     * */
     @RequestMapping("/equipmentadd.do")
     @ResponseBody
     public ModelAndView equipmentadd(String temp,String name,String com,Model model,HttpServletRequest request) {
@@ -93,6 +100,9 @@ public class EquipmentController {
         return retMap;
     }
 
+    /**
+     * 编辑读卡器
+     * */
     @RequestMapping("/equipmentupdate.do")
     @ResponseBody
     public ModelAndView equipmentupdate(String temp,String id,String status,Model model,HttpServletRequest request) {

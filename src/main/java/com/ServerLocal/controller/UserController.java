@@ -23,7 +23,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
     @Resource
     private IUserService userService;
-    //初始化
+    /**
+     * 登陆
+     * */
     @RequestMapping("/login.do")
     @ResponseBody
     public ModelAndView loginIn(User user,Model model,HttpServletRequest request) {
