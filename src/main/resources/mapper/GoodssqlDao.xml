@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ServerLocal.dao.IGoodssqlDao">
+    <select id="selectGoodssql" resultType="com.ServerLocal.model.Graduation_goods_sql">
+        select * from Graduation_goods_sql
+    </select>
+    <delete id="delGoodssql" parameterType="java.lang.String">
+        delete from Graduation_goods_sql where goods_ID = #{goods_ID}
+    </delete>
+    <insert id="addGoodssql" parameterType="com.ServerLocal.model.Graduation_goods_sql">
+        INSERT INTO Graduation_goods_sql (goods_ID,goods_name,goods_cost,goods_price,goods_Rquantity)
+        VALUES (#{goods_ID},#{goods_name},#{goods_cost},#{goods_price},#{goods_Rquantity})
+    </insert>
+    <update id="updateGoodssql" parameterType="com.ServerLocal.model.Graduation_goods_sql">
+        update Graduation_goods_sql
+        <set>
+            goods_name=#{goods_name},goods_cost=#{goods_cost},goods_price=#{goods_price},goods_Rquantity=#{goods_Rquantity},
+        </set>
+        where goods_ID=#{goods_ID}
+    </update>
+</mapper>

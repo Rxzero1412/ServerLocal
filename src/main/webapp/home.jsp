@@ -66,14 +66,14 @@
 </style>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
-    <div class="layui-header">
+    <div class="layui-header" style="width: 100%">
         <div class="layui-logo">智能超市管理系统的设计与实现</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">商品管理</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="javascript:;">商品信息查看</a></dd>
+                    <dd><a href="javascript:;" onclick="showgoodssql()">商品信息管理</a></dd>
                     <dd><a href="javascript:;">商品销售记录</a></dd>
                     <dd><a href="javascript:;">商品批量录入</a></dd>
                 </dl>
@@ -115,7 +115,6 @@
                     <a class="" href="javascript:;">读卡模块</a>
                     <dl class="layui-nav-child">
                         <dd style="margin-left: 10px" onclick="Cardreaderset()">设置</dd>
-                        <dd style="margin-left: 10px">日志信息</dd>
                     </dl>
                 </li>
             </ul>
@@ -123,7 +122,7 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">监控模块</a>
                     <dl class="layui-nav-child" id="layer-child">
-                        <dd style="margin-left: 10px">监控设置</dd>
+                        <dd style="margin-left: 10px"onclick="monitorset()">监控设置</dd>
                         <dd style="margin-left: 10px">实时监控</dd>
                     </dl>
                 </li>
@@ -165,9 +164,15 @@
     });
 </script>
 <script type="text/javascript">
-   function Cardreaderset(){
-       $("#iframeid").attr("src", '${pageContext.request.contextPath}/cardreadset.do');
-   }
+    function Cardreaderset(){
+        $("#iframeid").attr("src", '${pageContext.request.contextPath}/cardreadset.do');
+    }
+    function monitorset(){
+        $("#iframeid").attr("src", '${pageContext.request.contextPath}/monitorset.do');
+    }
+    function showgoodssql(){
+        $("#iframeid").attr("src", '${pageContext.request.contextPath}/showgoodssql.do');
+    }
 </script>
 </body>
 </html>

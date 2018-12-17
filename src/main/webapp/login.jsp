@@ -17,6 +17,8 @@
     <style type="text/css">
         body{
             background: url("${pageContext.request.contextPath}/images/a.jpg")repeat;
+            width: 100%;
+            height: 100%;
         }
         #login-box {
             /*border:1px solid #F00;*/
