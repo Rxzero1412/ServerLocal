@@ -22,17 +22,6 @@
 </head>
 
 <body class="layui-layout-body">
-<script lang="javascript">
-    function OnClose(check)
-    {
-        if(check == true)
-        {
-            var value = document.getElementById("password").value;
-            window.returnValue = value;
-        }
-        window.close();
-    }
-</script>
 <style type="text/css">
     .horizontal{
         float:left;
@@ -43,7 +32,7 @@
 
 <div class="horizontal" style="width: 100%">
     <div style="width: 200px" class="horizontal">
-        <button type="button" class="btn btn-default btn-info horizontal" data-toggle="modal" data-target="#myModal" style="margin-top: 1px">添加</button>
+        <button type="button" class="btn btn-default btn-info horizontal" data-toggle="modal" data-target="#myModal" style="margin-top: 1px" onclick="addinfo()">添加</button>
         <button type="button" class="btn btn-default btn-info horizontal" onclick="update()" style="margin-top: 1px;margin-left: 5px">刷新</button>
     </div>
 </div>
@@ -110,7 +99,7 @@
                 <td><c:out value="${g.goods_price}" /></td>
                 <td><c:out value="${g.goods_Rquantity}" /></td>
                 <td>
-                    <a style="margin-right: 10px" data-target="#myModal" data-toggle="modal" onclick="edit('${g.goods_name}','${g.goods_cost}','${g.goods_price}')">编辑</a>
+                    <a style="margin-right: 10px" data-target="#myModal" data-toggle="modal" onclick="edit('${g.goods_name}','${g.goods_cost}','${g.goods_price}','${g.goods_ID}','${g.goods_Rquantity}')">编辑</a>
                     <a href="${pageContext.request.contextPath}/delgoodssql.do?goods_ID=${g.goods_ID}" style="margin-right: 10px">删除</a>
                     <a href="${pageContext.request.contextPath}/equipmentdel.do?temp=0" style="margin-right: 10px">详情</a>
                 </td>
@@ -121,18 +110,28 @@
 </div>
 </body>
 <script type="text/javascript">
-    function edit(goodsname,goodscost,goodsprice) {
+    var editid="null";
+    var goodsRquantity="null";
+    function edit(goodsname,goodscost,goodsprice,goodsid,goodsRq) {
         $("#goods_name").val(goodsname);
         $("#goods_cost").val(goodscost);
         $("#goods_price").val(goodsprice);
+        editid=goodsid;
+        goodsRquantity=goodsRq;
     }
     function update() {
         location.reload();
+    }
+    function addinfo() {
+        editid="null";
+        goodsRquantity="null";
     }
     function add() {
         var goods_name = $("#goods_name").val();
         var goods_cost = $("#goods_cost").val();
         var goods_price = $("#goods_price").val();
+        var goods_ID=editid;
+        var goods_Rquantity=goodsRquantity;
         $.ajax({
             type: "POST",
             url: "${pageContext.request.contextPath}/addgoodssql.do",
@@ -140,7 +139,9 @@
             data: {
                 "goods_name":goods_name,
                 "goods_cost":goods_cost,
-                "goods_price":goods_price
+                "goods_price":goods_price,
+                "goods_ID":goods_ID,
+                "goods_Rquantity":goods_Rquantity
             },
             success: function(){
                 window.location.replace("${pageContext.request.contextPath}/showgoodssql.do");
@@ -149,9 +150,6 @@
                 window.location.replace("${pageContext.request.contextPath}/showgoodssql.do");
             }
         });
-
     }
-
-
 </script>
 </html>

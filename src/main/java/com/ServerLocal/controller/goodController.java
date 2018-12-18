@@ -44,16 +44,27 @@ public class goodController  {
                                     HttpServletRequest request,
                                     String goods_name,
                                     String goods_cost,
-                                    String goods_price) {
+                                    String goods_price,
+                                    String goods_ID,
+                                    String goods_Rquantity) {
         ModelAndView retMap = new ModelAndView();  //返回新的ModelAndView
         Graduation_goods_sql gsql=new Graduation_goods_sql();
-        Date date = new Date();
-        gsql.setGoods_ID(Long.toString(date.getTime()));
-        gsql.setGoods_name(goods_name);
-        gsql.setGoods_cost(goods_cost);
-        gsql.setGoods_price(goods_price);
-        gsql.setGoods_Rquantity("0");
-        goodssqlService.addGoodssql(gsql);
+        if(goods_ID.equals("null")){
+            Date date = new Date();
+            gsql.setGoods_ID(Long.toString(date.getTime()));
+            gsql.setGoods_name(goods_name);
+            gsql.setGoods_cost(goods_cost);
+            gsql.setGoods_price(goods_price);
+            gsql.setGoods_Rquantity("0");
+            goodssqlService.addGoodssql(gsql);
+        }else {
+            gsql.setGoods_ID(goods_ID);
+            gsql.setGoods_name(goods_name);
+            gsql.setGoods_cost(goods_cost);
+            gsql.setGoods_price(goods_price);
+            gsql.setGoods_Rquantity(goods_Rquantity);
+            goodssqlService.updateGoodssql(gsql);
+        }
         retMap.setViewName("redirect:/showgoodssql.do");
         return retMap;
     }
@@ -70,4 +81,6 @@ public class goodController  {
         retMap.setViewName("redirect:/showgoodssql.do");
         return retMap;
     }
+
+
 }
