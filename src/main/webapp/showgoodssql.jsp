@@ -110,8 +110,8 @@
                 <td><c:out value="${g.goods_price}" /></td>
                 <td><c:out value="${g.goods_Rquantity}" /></td>
                 <td>
-                    <a href="${pageContext.request.contextPath}/equipmentupdate.do?temp=0&status=1" style="margin-right: 10px">编辑</a>
-                    <a href="${pageContext.request.contextPath}/equipmentdel.do?temp=0" style="margin-right: 10px">删除</a>
+                    <a style="margin-right: 10px" data-target="#myModal" data-toggle="modal" onclick="edit('${g.goods_name}','${g.goods_cost}','${g.goods_price}')">编辑</a>
+                    <a href="${pageContext.request.contextPath}/delgoodssql.do?goods_ID=${g.goods_ID}" style="margin-right: 10px">删除</a>
                     <a href="${pageContext.request.contextPath}/equipmentdel.do?temp=0" style="margin-right: 10px">详情</a>
                 </td>
             </tr>
@@ -121,7 +121,12 @@
 </div>
 </body>
 <script type="text/javascript">
-    function update(com) {
+    function edit(goodsname,goodscost,goodsprice) {
+        $("#goods_name").val(goodsname);
+        $("#goods_cost").val(goodscost);
+        $("#goods_price").val(goodsprice);
+    }
+    function update() {
         location.reload();
     }
     function add() {

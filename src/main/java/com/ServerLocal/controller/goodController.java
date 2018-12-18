@@ -57,5 +57,17 @@ public class goodController  {
         retMap.setViewName("redirect:/showgoodssql.do");
         return retMap;
     }
-
+    /**
+     * 添加商品信息
+     * */
+    @RequestMapping("/delgoodssql.do")
+    @ResponseBody
+    public ModelAndView delgoodssql(Model model,
+                                    HttpServletRequest request,
+                                    String goods_ID) {
+        ModelAndView retMap = new ModelAndView();  //返回新的ModelAndView
+        goodssqlService.delGoodssql(goods_ID);
+        retMap.setViewName("redirect:/showgoodssql.do");
+        return retMap;
+    }
 }
