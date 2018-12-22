@@ -75,7 +75,6 @@
                 <dl class="layui-nav-child">
                     <dd><a href="javascript:;" onclick="showgoodssql()">商品信息管理</a></dd>
                     <dd><a href="javascript:;">商品销售记录</a></dd>
-                    <dd><a href="javascript:;">商品批量录入</a></dd>
                 </dl>
             </li>
 

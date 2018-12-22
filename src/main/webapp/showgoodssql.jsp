@@ -101,7 +101,7 @@
                 <td>
                     <a style="margin-right: 10px" data-target="#myModal" data-toggle="modal" onclick="edit('${g.goods_name}','${g.goods_cost}','${g.goods_price}','${g.goods_ID}','${g.goods_Rquantity}')">编辑</a>
                     <a href="${pageContext.request.contextPath}/delgoodssql.do?goods_ID=${g.goods_ID}" style="margin-right: 10px">删除</a>
-                    <a href="${pageContext.request.contextPath}/equipmentdel.do?temp=0" style="margin-right: 10px">详情</a>
+                    <a href="${pageContext.request.contextPath}/equipmentdel.do?temp=0" style="margin-right: 10px">商品批量录入</a>
                 </td>
             </tr>
         </c:forEach>
