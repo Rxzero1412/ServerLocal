@@ -47,7 +47,7 @@ public class UserController {
             flag = userService.login(user.getUsername(),Md5);
             if(flag){
                 resultMap.put("result", 1);
-                retMap=new ModelAndView("redirect:/home.do");
+                retMap=new ModelAndView("redirect:/home.do?username="+user.getUsername());
             }else{
                 if((user.getUsername()  == null)&&(user.getPassword() == null)){
                     retMap.setViewName("../../login");

@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>智能超市管理系统的设计与实现</title>
+    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="layui/layui.js"></script>
     <script type="text/javascript" src="js/ol-debug.js"></script>
@@ -95,7 +96,7 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-                    admin
+                    ${username}
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="javascript:;">基本资料</a></dd>
@@ -144,7 +145,7 @@
 </div>
 <script>
     //JavaScript代码区域
-
+    //alert(returnCitySN['cip'] + returnCitySN['cname']);
 
     layui.use('element', function(){
         var element = layui.element;
