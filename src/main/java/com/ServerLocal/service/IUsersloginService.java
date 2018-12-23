@@ -1,11 +1,10 @@
-package com.ServerLocal.dao;
+package com.ServerLocal.service;
 
-import com.ServerLocal.model.User;
 import com.ServerLocal.model.userslogin;
 
 import java.util.List;
 
-public interface IUsersloginDao {
+public interface IUsersloginService {
     public List<userslogin> selectuserslogins();
     public boolean adduserslogin(userslogin ul);
 
