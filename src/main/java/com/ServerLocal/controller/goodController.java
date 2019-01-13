@@ -69,7 +69,7 @@ public class goodController  {
         return retMap;
     }
     /**
-     * 添加商品信息
+     * 删除商品信息
      * */
     @RequestMapping("/delgoodssql.do")
     @ResponseBody

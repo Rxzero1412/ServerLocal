@@ -305,9 +305,6 @@ public class com extends Thread implements SerialPortEventListener {
     }
     public static void main(String arg[]){
         List<String> listcom=new com().listPorts();
-//        List<String> listcom=new ArrayList<>();
-//        listcom.add("COM3");
-//        listcom.add("COM4");
         new com().runs(listcom);
     }
 }
