@@ -248,10 +248,15 @@ public class com extends Thread implements SerialPortEventListener {
                 // 如果堵塞队列中存在数据就将其输出
                 if (msgQueue.size() > 0) {
                     String rFIDString=msgQueue.take();
-                    if(!list.contains(rFIDString)){
+                    if(list!=null){
+                        if(rFIDString!=null&&!list.contains(rFIDString)){
+                            list.add(rFIDString);
+                            System.out.println(rFIDString);
+                        }
+                    }else {
                         list.add(rFIDString);
-                        System.out.println(rFIDString);
                     }
+
                 }
             }
         } catch (InterruptedException e) {
@@ -267,7 +272,7 @@ public class com extends Thread implements SerialPortEventListener {
             runboolean=false;
         }
     }
-    public void runs(List<String> listcom) {
+    public static void runs(List<String> listcom) {
         inputStream= new InputStream[listcom.size()];
         outputStream = new OutputStream[listcom.size()];
         serialPort=new SerialPort[listcom.size()];

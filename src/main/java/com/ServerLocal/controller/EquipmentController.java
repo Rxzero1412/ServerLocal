@@ -68,7 +68,7 @@ public class EquipmentController {
     }
 
     /**
-     * 删除读卡器
+     * 删除设备
      * */
     @RequestMapping("/equipmentdel.do")
     @ResponseBody
@@ -81,7 +81,7 @@ public class EquipmentController {
     }
 
     /**
-     * 添加读卡器
+     * 添加设备
      * */
     @RequestMapping("/equipmentadd.do")
     @ResponseBody
