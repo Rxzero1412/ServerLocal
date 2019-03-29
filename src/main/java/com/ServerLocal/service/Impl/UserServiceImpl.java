@@ -22,4 +22,9 @@ public class UserServiceImpl implements IUserService {
         }
         return false;
     }
+
+    @Override
+    public boolean updatepassword(User user) {
+        return userDao.updatepassword(user);
+    }
 }

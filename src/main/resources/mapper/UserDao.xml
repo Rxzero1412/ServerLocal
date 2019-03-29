@@ -15,4 +15,12 @@
         select * from users where username = #{username}
     </select>
 
+    <update id="updatepassword" parameterType="com.ServerLocal.model.User">
+        update users
+        <set>
+            password=#{password}
+        </set>
+        where id=#{id}
+    </update>
+
 </mapper>

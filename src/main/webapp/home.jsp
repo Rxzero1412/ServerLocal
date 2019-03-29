@@ -6,7 +6,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>智能超市管理系统的设计与实现</title>
-    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="layui/layui.js"></script>
     <script type="text/javascript" src="js/ol-debug.js"></script>
@@ -66,6 +71,42 @@
     }
 </style>
 <body class="layui-layout-body">
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    修改管理员密码
+                </h4>
+            </div>
+            <div style="height: 180px;width: 100%">
+                <div class="form-group" style="top: 18px">
+                    <label for="input_password1" class="col-sm-2 control-label" style="width: 300px">请输入新密码：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" style="width: 400px" id="input_password1" placeholder="请输入新密码">
+                    </div>
+                </div>
+                <div class="form-group" style="top: 10px;margin-top: 30px">
+                    <label for="input_password2" class="col-sm-2 control-label" style="width: 300px">请确认新密码：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" style="width: 400px" id="input_password2" placeholder="请确认新密码">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" onclick="updatepassword()" data-dismiss="modal">
+                    提交
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header" style="width: 100%">
         <div class="layui-logo">智能超市管理系统的设计与实现</div>
@@ -100,7 +141,7 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="javascript:;">基本资料</a></dd>
-                    <dd><a href="javascript:;">安全设置</a></dd>
+                    <dd><a data-toggle="modal" data-target="#myModal">修改密码</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item"><a href="#" onclick="javascript:history.back(-1);session.invalidate();">退出</a></li>
@@ -117,8 +158,6 @@
                         <dd style="margin-left: 10px" onclick="Cardreaderset()">设置</dd>
                     </dl>
                 </li>
-            </ul>
-            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">监控模块</a>
                     <dl class="layui-nav-child" id="layer-child">
@@ -172,6 +211,30 @@
     }
     function showgoodssql(){
         $("#iframeid").attr("src", '${pageContext.request.contextPath}/showgoodssql.do');
+    }
+    function updatepassword() {
+        var password1 = $("#input_password1").val();
+        var password2 = $("#input_password2").val();
+        if(password1==password2){
+            $.ajax({
+                type: "POST",
+                url: "${pageContext.request.contextPath}/updatepassword.do",
+                dataType: 'json',
+                data: {
+                    "password":password1,
+                    "id":"0"
+                },
+                success: function(){
+                    alert("修改成功");
+                },
+                error:function(){
+                    alert("修改成功");
+                }
+            });
+        }else{
+            alert("密码不一致，请重新输入");
+        }
+
     }
 </script>
 </body>
