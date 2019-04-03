@@ -234,7 +234,6 @@
         }else{
             alert("密码不一致，请重新输入");
         }
-
     }
 </script>
 </body>

@@ -1,10 +1,7 @@
 package com.ServerLocal.service.Impl;
 
-import com.ServerLocal.dao.IEquipmentDao;
 import com.ServerLocal.dao.IGoodssqlDao;
 import com.ServerLocal.model.Graduation_goods_sql;
-import com.ServerLocal.model.equipment;
-import com.ServerLocal.service.IequipmentService;
 import com.ServerLocal.service.IgoodssqlService;
 import org.springframework.stereotype.Service;
 
