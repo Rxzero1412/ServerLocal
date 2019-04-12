@@ -151,18 +151,24 @@
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+            <ul class="layui-nav layui-nav-tree layui-inline" style="margin-right: 10px;" lay-filter="demo">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">读卡模块</a>
+                    <a href="javascript:;">读卡模块</a>
                     <dl class="layui-nav-child">
-                        <dd style="margin-left: 10px" onclick="Cardreaderset()">设置</dd>
+                        <dd><a href="javascript:Cardreaderset();">设置</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">监控模块</a>
-                    <dl class="layui-nav-child" id="layer-child">
-                        <dd style="margin-left: 10px"onclick="monitorset()">监控设置</dd>
-                        <dd style="margin-left: 10px">实时监控</dd>
+                    <a href="javascript:;">监控模块</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:monitorset();">监控设置</a></dd>
+                        <dd><a href="">实时监控</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;">开关门模块</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">设置</a></dd>
                     </dl>
                 </li>
             </ul>
@@ -172,12 +178,7 @@
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <div id="mapDiv" style="width: 100%; height: 100%">
-            <iframe id="iframeid" style="width: 100%;height: 100%;" scrolling="no"></iframe>
-        </div>
-        <div id="popup" class="ol-popup">
-            <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-            <div id="popup-title" class="popup-title"></div>
-            <div id="popup-content" class="popup-content"></div>
+            <iframe id="iframeid" style="width: 100%;height: 100%;" scrolling="no" src="homeimg.jsp"></iframe>
         </div>
     </div>
 
