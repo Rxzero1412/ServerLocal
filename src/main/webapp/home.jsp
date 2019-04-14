@@ -112,6 +112,9 @@
         <div class="layui-logo">智能超市管理系统的设计与实现</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item layui-this">
+                <a href="javascript:showhomeimg();">首页</a>
+            </li>
             <li class="layui-nav-item">
                 <a href="javascript:;">商品管理</a>
                 <dl class="layui-nav-child">
@@ -165,12 +168,6 @@
                         <dd><a href="">实时监控</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item layui-nav-itemed">
-                    <a href="javascript:;">开关门模块</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">设置</a></dd>
-                    </dl>
-                </li>
             </ul>
         </div>
     </div>
@@ -212,6 +209,9 @@
     }
     function showgoodssql(){
         $("#iframeid").attr("src", '${pageContext.request.contextPath}/showgoodssql.do');
+    }
+    function showhomeimg(){
+        $("#iframeid").attr("src", '${pageContext.request.contextPath}/homeimg.jsp');
     }
     function updatepassword() {
         var password1 = $("#input_password1").val();

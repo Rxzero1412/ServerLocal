@@ -60,11 +60,14 @@
 </div>
 </body>
 <script type="text/javascript">
+    var bool=false;
     function getrfid() {
+        bool=true;
         $.ajax({
             type: "POST",
             url: "${pageContext.request.contextPath}/opengetRFID.do",
             success: function(){
+
             },
             error:function(){
             }
@@ -75,11 +78,28 @@
             type: "POST",
             url: "${pageContext.request.contextPath}/savegoodsRFID.do",
             success: function(){
+
+                bool=false;
+                window.clearInterval(t2);
             },
             error:function(){
             }
         });
     }
 
+    var t2 = window.setInterval(function() {
+        if(bool){
+            $.ajax({
+                type: "POST",
+                url: "${pageContext.request.contextPath}/getRFID.do",
+                success: function(request){
+                    console.log(request);
+                },
+                error:function(){
+                }
+            });
+        }
+    },2500);
 </script>
+
 </html>

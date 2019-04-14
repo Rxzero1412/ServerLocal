@@ -28,7 +28,7 @@
     <div id="main3" style="width: 500px;height:400px;z-index: 30000;margin-left: 40px;margin-top: 30px;"></div>
     <div id="Layer1" style="position:fixed; left:0px; top:0px; width:100%; height:100%;">
         <div style="width:100%; height:100%;z-index: 2000;">
-            <img src="img/timg.gif" width="45%" height="45%" style="margin-left:640px;margin-top: 400px"/>
+            <img src="img/timg.gif" width="45%" height="45%" style="margin-left:640px;margin-top: 380px"/>
         </div>
     </div>
     <script type="text/javascript">
@@ -148,10 +148,10 @@
             },
             series: [
                 {
-                    name: '业务指标',
+                    name: 'CPU',
                     type: 'gauge',
                     detail: {formatter:'{value}%'},
-                    data: [{value: 50, name: '完成率'}]
+                    data: [{value: 50, name: '使用率'}]
                 }
             ]
         };

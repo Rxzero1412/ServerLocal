@@ -149,31 +149,49 @@ public class com extends Thread implements SerialPortEventListener {
             case SerialPortEvent.OUTPUT_BUFFER_EMPTY:
                 break;
             case SerialPortEvent.DATA_AVAILABLE:// 当有可用数据时读取数据
-                byte[] readBuffer = new byte[100];
-                try {
-                    for (int j=0;j<inputStream.length;j++){
-                        while (inputStream[j].available() > 0) {
-                            inputStream[j].read(readBuffer);
-                            s = new String(readBuffer);
-                            char[] ca=s.toCharArray();
-                            for (int i = 0; i < ca.length; i++) {
-                                if((ca[i]>='0'&&ca[i]<='9')||(ca[i]>='A'&&ca[i]<='Z')){
-                                    if(ca[i]=='U'){
-                                        if (charcount>1) {
-                                            String ss=new String(rebuf);
-                                            msgQueue.add(ss.substring(22, ss.length()));
-                                        }
-                                        charcount=0;
-                                    }
-                                    rebuf[charcount]=ca[i];
-                                    charcount++;
-                                }
-                            }
-                            readBuffer = new byte[100];
+                for (int j=0;j<inputStream.length;j++){
+                    byte[] readBuffer = new byte[1000];
+                    try {
+                        inputStream[j].read(readBuffer);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    String ss=new String(readBuffer).trim().replaceAll("\n","#").replaceAll("\r","@");
+                    String sss[]=ss.split("#");
+                    for (int s=0;s<sss.length;s++){
+                        if(sss[s].length()==34&&sss[s].contains("@")){
+                            msgQueue.add(sss[s].substring(21, 33));
                         }
                     }
-                } catch (IOException e) {
+                    //System.out.println(ss);
                 }
+//                try {
+//                    for (int j=0;j<inputStream.length;j++){
+//                        while (inputStream[j].available() > 0) {
+//                            inputStream[j].read(readBuffer);
+//                            s = new String(readBuffer).trim();
+//                            char[] ca=s.toCharArray();
+//                            System.out.println(ca);
+//                            for (int i = 0; i < ca.length; i++) {
+////                                System.out.println(ca);
+////                                System.out.println("length:"+ca.length);
+//                                if((ca[i]>='0'&&ca[i]<='9')||(ca[i]>='A'&&ca[i]<='Z')){
+//                                    if(ca[i]=='U'){
+//                                        if (charcount>1) {
+//                                            String ss=new String(rebuf);
+//                                            if(ss.length()==34) msgQueue.add(ss.substring(22, ss.length()-1));
+//                                        }
+//                                        charcount=0;
+//                                    }
+//                                    rebuf[charcount]=ca[i];
+//                                    charcount++;
+//                                }
+//                            }
+//                            readBuffer = new byte[1000];
+//                        }
+//                    }
+//                } catch (IOException e) {
+//                }
                 break;
         }
     }
@@ -251,7 +269,7 @@ public class com extends Thread implements SerialPortEventListener {
                     if(list!=null){
                         if(rFIDString!=null&&!list.contains(rFIDString)){
                             list.add(rFIDString);
-                            System.out.println(rFIDString);
+                           System.out.println(rFIDString);
                         }
                     }else {
                         list.add(rFIDString);
