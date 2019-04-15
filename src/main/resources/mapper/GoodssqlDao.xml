@@ -5,6 +5,9 @@
     <select id="selectGoodssql" resultType="com.ServerLocal.model.Graduation_goods_sql">
         select * from Graduation_goods_sql
     </select>
+    <select id="getGoodssql" resultType="com.ServerLocal.model.Graduation_goods_sql">
+        select * from Graduation_goods_sql WHERE goods_ID = #{goods_ID}
+    </select>
     <delete id="delGoodssql" parameterType="java.lang.String">
         delete from Graduation_goods_sql where goods_ID = #{goods_ID}
     </delete>
@@ -19,4 +22,8 @@
         </set>
         where goods_ID=#{goods_ID}
     </update>
+    <insert id="addGoodsRFID" parameterType="com.ServerLocal.model.Graduation_goods_rfid">
+        INSERT INTO Graduation_goods_rfid (goods_ID,RFID)
+        VALUES (#{goods_ID},#{RFID})
+    </insert>
 </mapper>

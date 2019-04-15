@@ -156,16 +156,19 @@ public class goodController  {
     @ResponseBody
     public ModelAndView savegoodsRFID(String goods_ID,Model model,HttpServletRequest request) {
         ModelAndView retMap = new ModelAndView();  //返回新的ModelAndView
+        Graduation_goods_sql ggs=goodssqlService.getGoodssql(goods_ID);
         List<String> goodsrfidlist=new ArrayList<>();
         goodsrfidlist.addAll(new com().list);
-        new com().stops();
-        List<Graduation_goods_rfid> goodsrfid=new ArrayList<>();
         for (int i=0;i<goodsrfidlist.size();i++){
             Graduation_goods_rfid ggf=new Graduation_goods_rfid();
             ggf.setGoods_ID(goods_ID);
             ggf.setRFID(goodsrfidlist.get(i));
-            goodsrfid.add(ggf);
+            goodssqlService.addGoodsRFID(ggf);
         }
+        int rq=Integer.parseInt(ggs.getGoods_Rquantity())+goodsrfidlist.size();
+        ggs.setGoods_Rquantity(String.valueOf(rq));
+        goodssqlService.updateGoodssql(ggs);
+        new com().stops();
         return retMap;
     }
 

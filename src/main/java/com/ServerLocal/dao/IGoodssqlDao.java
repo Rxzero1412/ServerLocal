@@ -7,6 +7,7 @@ import java.lang.String;import java.util.List;
 
 public interface IGoodssqlDao {
     public List<Graduation_goods_sql> selectGoodssql();
+    public Graduation_goods_sql getGoodssql(String goods_ID);
     public boolean delGoodssql(String goods_ID);
     public boolean addGoodssql(Graduation_goods_sql goods_sql);
     public boolean updateGoodssql(Graduation_goods_sql goods_sql);

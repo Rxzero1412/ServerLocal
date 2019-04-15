@@ -1,6 +1,7 @@
 package com.ServerLocal.service.Impl;
 
 import com.ServerLocal.dao.IGoodssqlDao;
+import com.ServerLocal.model.Graduation_goods_rfid;
 import com.ServerLocal.model.Graduation_goods_sql;
 import com.ServerLocal.service.IgoodssqlService;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,11 @@ public class goodssqlServiceImpl implements IgoodssqlService {
     }
 
     @Override
+    public Graduation_goods_sql getGoodssql(String goods_ID) {
+        return goodssqlDao.getGoodssql(goods_ID);
+    }
+
+    @Override
     public boolean delGoodssql(String goods_ID) {
         return goodssqlDao.delGoodssql(goods_ID);
     }
@@ -32,5 +38,10 @@ public class goodssqlServiceImpl implements IgoodssqlService {
     @Override
     public boolean updateGoodssql(Graduation_goods_sql goods_sql) {
         return goodssqlDao.updateGoodssql(goods_sql);
+    }
+
+    @Override
+    public boolean addGoodsRFID(Graduation_goods_rfid goods_rfid) {
+        return goodssqlDao.addGoodsRFID(goods_rfid);
     }
 }
