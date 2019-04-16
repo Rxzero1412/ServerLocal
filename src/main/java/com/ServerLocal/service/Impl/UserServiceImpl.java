@@ -1,11 +1,13 @@
 package com.ServerLocal.service.Impl;
 
 import com.ServerLocal.dao.IUserDao;
+import com.ServerLocal.model.Graduation_user;
 import com.ServerLocal.model.User;
 import com.ServerLocal.service.IUserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service("userService")
 public class UserServiceImpl implements IUserService {
@@ -21,6 +23,11 @@ public class UserServiceImpl implements IUserService {
                 return true;
         }
         return false;
+    }
+
+    @Override
+    public List<Graduation_user> selectAlluser() {
+        return userDao.selectAlluser();
     }
 
     @Override

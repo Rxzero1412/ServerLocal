@@ -14,6 +14,9 @@
     <select id="selectByName" parameterType="java.lang.String" resultMap="LoginMap">
         select * from users where username = #{username}
     </select>
+    <select id="selectAlluser" resultType="com.ServerLocal.model.Graduation_user">
+        select * from Graduation_user
+    </select>
 
     <update id="updatepassword" parameterType="com.ServerLocal.model.User">
         update users

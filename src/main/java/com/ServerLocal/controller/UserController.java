@@ -1,5 +1,6 @@
 package com.ServerLocal.controller;
 
+import com.ServerLocal.model.Graduation_user;
 import com.ServerLocal.model.User;
 import com.ServerLocal.service.IUserService;
 import com.ServerLocal.util.Utils;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -59,7 +61,6 @@ public class UserController {
         }
         return retMap;
     }
-
     //更新管理员密码
     @RequestMapping("/updatepassword.do")
     @ResponseBody
@@ -77,4 +78,31 @@ public class UserController {
             return String.valueOf(b);
         }
     }
+
+    //用户id列表
+    @RequestMapping("/selectuser.do")
+    @ResponseBody
+    public String selectuser( Model model, HttpServletRequest request) {
+        List<Graduation_user> list=userService.selectAlluser();
+        String re = list.get(0).getUserid();
+        for (int i=1;i<list.size();i++){
+            re+=","+list.get(i).getUserid();
+        }
+        return re;
+    }
+
+
+    /**
+     * 用户信息管理
+     * */
+    @RequestMapping("/showuser.do")
+    @ResponseBody
+    public ModelAndView showuser(Model model,HttpServletRequest request) {
+        ModelAndView retMap = new ModelAndView();  //返回新的ModelAndView
+        List<Graduation_user> list=userService.selectAlluser();
+        retMap.setViewName("../../showuser");
+        model.addAttribute("listuser", list);
+        return retMap;
+    }
+
 }

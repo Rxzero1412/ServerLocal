@@ -126,7 +126,7 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">用户管理</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="javascript:;">查看用户信息</a></dd>
+                    <dd><a href="javascript:;" onclick="showuser()">查看用户信息</a></dd>
                 </dl>
             </li>
 
@@ -209,6 +209,9 @@
     }
     function showgoodssql(){
         $("#iframeid").attr("src", '${pageContext.request.contextPath}/showgoodssql.do');
+    }
+    function showuser(){
+        $("#iframeid").attr("src", '${pageContext.request.contextPath}/showuser.do');
     }
     function showhomeimg(){
         $("#iframeid").attr("src", '${pageContext.request.contextPath}/homeimg.jsp');
