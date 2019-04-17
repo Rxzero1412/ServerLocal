@@ -3,11 +3,6 @@
     <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="ServerLocal.war">
       <element id="artifact" artifact-name="ServerLocal:war exploded" />
-      <element id="directory" name="WEB-INF">
-        <element id="directory" name="lib">
-          <element id="library" level="project" name="RXTXcomm" />
-        </element>
-      </element>
     </root>
   </artifact>
 </component>

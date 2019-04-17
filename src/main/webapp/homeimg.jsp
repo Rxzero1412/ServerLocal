@@ -24,11 +24,11 @@
 <div style="height: 100%;width: 100%">
     <script src="js/echarts.min.js"></script>
     <div id="main1" style="width: 500px;height:300px;z-index: 10000;margin-left: 40px;margin-top: 30px;"></div>
-    <div id="main2" style="width: 400px;height:300px;z-index: 20000;margin-left: 720px;margin-top: -300px;"></div>
-    <div id="main3" style="width: 500px;height:400px;z-index: 30000;margin-left: 40px;margin-top: 30px;"></div>
+    <div id="main2" style="width: 500px;height:400px;z-index: 20000;margin-left: 620px;margin-top: -350px;"></div>
+    <div id="main3" style="width: 480px;height:400px;z-index: 30000;margin-left: 40px;margin-top: -40px;"></div>
     <div id="Layer1" style="position:fixed; left:0px; top:0px; width:100%; height:100%;">
         <div style="width:100%; height:100%;z-index: 2000;">
-            <img src="img/timg.gif" width="45%" height="45%" style="margin-left:640px;margin-top: 380px"/>
+            <img src="img/timg.gif" width="40%" height="45%" style="margin-left:640px;margin-top: 380px"/>
         </div>
     </div>
     <script type="text/javascript">
@@ -122,11 +122,13 @@
                         }
                     },
                     data:[
-                        {value:335, name:'直接访问'},
-                        {value:310, name:'邮件营销'},
-                        {value:234, name:'联盟广告'},
-                        {value:135, name:'视频广告'},
-                        {value:1548, name:'搜索引擎'}
+                        {value:335, name:'1'},
+                        {value:310, name:'2'},
+                        {value:234, name:'3'},
+                        {value:135, name:'4'},
+                        {value:1548, name:'5'},
+                        {value:335, name:'6'},
+                        {value:1548, name:'0'}
                     ]
                 }
             ]
@@ -151,13 +153,22 @@
                     name: 'CPU',
                     type: 'gauge',
                     detail: {formatter:'{value}%'},
-                    data: [{value: 50, name: '使用率'}]
+                    data: [{value: 50, name: 'CPU使用率'}]
                 }
             ]
         };
 
         setInterval(function () {
-            option3.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+            $.ajax({
+                type: "POST",
+                url: "${pageContext.request.contextPath}/getcpu.do",
+                success: function(e){
+                    option3.series[0].data[0].value = e;
+                },
+                error:function(e){
+                }
+            });
+
             myChart3.setOption(option3, true);
         },2000);
 

@@ -119,6 +119,15 @@
       <artifactId>spring-beans</artifactId>
       <version>${spring.version}</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.hyperic/sigar -->
+    <dependency>
+      <groupId>org.hyperic</groupId>
+      <artifactId>sigar</artifactId>
+      <scope>system</scope>
+      <version>1.6.4</version>
+      <systemPath>${project.basedir}/lib/sigar.jar</systemPath>
+    </dependency>
+
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
