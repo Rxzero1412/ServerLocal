@@ -38,8 +38,4 @@ public class homeController {
         double re=(double)Math.round(new CPU().cpus*100);
         return re;
     }
-
-
-
-
 }
