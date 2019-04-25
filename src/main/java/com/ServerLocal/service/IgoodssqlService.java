@@ -13,4 +13,5 @@ public interface IgoodssqlService {
     public boolean addGoodssql(Graduation_goods_sql goods_sql);
     public boolean updateGoodssql(Graduation_goods_sql goods_sql);
     public boolean addGoodsRFID(Graduation_goods_rfid goods_rfid);
+    public boolean updateGoodsprice(Graduation_goods_sql goods_sql);
 }

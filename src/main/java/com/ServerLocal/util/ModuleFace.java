@@ -9,11 +9,7 @@ import java.util.Map;
  * Created by 83541 on 2019/4/18.
  */
 public class ModuleFace extends Thread  {
-    public static boolean modulefaceboolean=false;
     public static Map<String,Graduation_goods_sql> map=new HashMap<>();
     public static int mapsize=0;
-    @Override
-    public void run() {
-
-    }
+    public static double money=0.00;
 }

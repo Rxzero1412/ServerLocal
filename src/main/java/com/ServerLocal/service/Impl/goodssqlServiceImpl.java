@@ -44,4 +44,12 @@ public class goodssqlServiceImpl implements IgoodssqlService {
     public boolean addGoodsRFID(Graduation_goods_rfid goods_rfid) {
         return goodssqlDao.addGoodsRFID(goods_rfid);
     }
+
+    @Override
+    public boolean updateGoodsprice(Graduation_goods_sql goods_sql) {
+        int i=Integer.parseInt(goods_sql.getGoods_Rquantity());
+        i=i-1;
+        goods_sql.setGoods_Rquantity(Integer.toString(i));
+        return goodssqlDao.updateGoodssql(goods_sql);
+    }
 }

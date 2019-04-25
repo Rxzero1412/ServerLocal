@@ -15,6 +15,11 @@ public class UserServiceImpl implements IUserService {
     @Resource
     private IUserDao userDao;
 
+    @Override
+    public Graduation_user selectUserid(String userid) {
+        return userDao.selectUserid(userid);
+    }
+
     public boolean login(String username, String password){
 
         User user = userDao.selectByName(username);

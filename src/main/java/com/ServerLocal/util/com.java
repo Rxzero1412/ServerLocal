@@ -30,6 +30,7 @@ public class com extends Thread implements SerialPortEventListener {
     private String s;
     private int charcount=0;
     private char[] rebuf = new char[34];
+
     public List<String> listPorts(){
         List<String> relist=new ArrayList<>();
         Enumeration enumeration= CommPortIdentifier.getPortIdentifiers();
