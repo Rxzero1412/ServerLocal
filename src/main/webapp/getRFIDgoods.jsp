@@ -22,7 +22,7 @@
 </head>
 
 <body class="layui-layout-body">
-<div>
+<div style="margin-left: 50px">
     <table class="table table-hover">
         <thead>
         <tr>

@@ -11,5 +11,6 @@ public interface IUserDao {
     public Graduation_user selectUserid(String userid);
     public List<Graduation_user> selectAlluser();
     public boolean updatepassword(User user);
+    public boolean updatebalance(Graduation_user graduation_user);
 
 }

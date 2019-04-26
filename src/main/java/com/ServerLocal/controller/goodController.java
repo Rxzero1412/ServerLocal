@@ -228,23 +228,34 @@ public class goodController  {
     public String facegetgoodstop(String userid,Model model,HttpServletRequest request) {
         new com().stops();
         String restr="200";
-        List<String> rfidlist=new com().list;
-        Map<String,Graduation_goods_sql> mapss=new ModuleFace().map;
-        for (int i=0;i<rfidlist.size();i++){
-            String s=rfidlist.get(i);
-            Graduation_Historical gh=new Graduation_Historical();
-            Graduation_goods_sql gsss=mapss.get(s);
-            if(gsss!=null){
-                mapss.remove(s);
-                gh.setUserid(userid);
-                gh.setGoods_name(gsss.getGoods_name());
-                gh.setGoods_price(gsss.getGoods_price());
-                gh.setGoods_count("1");
-                gh.setTime(getStringDateShort());
-                goodsHistoricalService.addGoodsHistorical(gh);
-                goodsRFIDService.delGoodsrfid(s);
-                goodssqlService.updateGoodsprice(gsss);
+        Graduation_user u=userService.selectUserid(userid);
+        double b= Double.parseDouble(u.getBalance())- new ModuleFace().money;
+        if(b>0){
+            List<String> rfidlist=new com().list;
+            Map<String,Graduation_goods_sql> mapss=new HashMap<>();
+            mapss.putAll(new ModuleFace().map);
+            for (int i=0;i<rfidlist.size();i++){
+                String s=rfidlist.get(i);
+                if(mapss.containsKey(s)){
+                    Graduation_Historical gh=new Graduation_Historical();
+                    Graduation_goods_sql gsss=mapss.get(s);
+                    if(gsss!=null){
+                        new ModuleFace().map.remove(s);
+                        gh.setUserid(userid);
+                        gh.setGoods_name(gsss.getGoods_name());
+                        gh.setGoods_price(gsss.getGoods_price());
+                        gh.setGoods_count("1");
+                        gh.setTime(getStringDateShort());
+                        goodssqlService.updateGoodsprice(gsss);
+                        goodsHistoricalService.addGoodsHistorical(gh);
+                        goodsRFIDService.delGoodsrfid(s);
+                    }
+                }
             }
+            u.setBalance(Double.toString(b));
+            userService.updatebalance(u);
+        }else {
+            restr="500";
         }
         return restr;
     }

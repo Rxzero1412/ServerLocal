@@ -47,9 +47,9 @@ public class goodssqlServiceImpl implements IgoodssqlService {
 
     @Override
     public boolean updateGoodsprice(Graduation_goods_sql goods_sql) {
-        int i=Integer.parseInt(goods_sql.getGoods_Rquantity());
-        i=i-1;
-        goods_sql.setGoods_Rquantity(Integer.toString(i));
-        return goodssqlDao.updateGoodssql(goods_sql);
+        Graduation_goods_sql g=goodssqlDao.getGoodssql(goods_sql.getGoods_ID());
+        int i=Integer.parseInt(g.getGoods_Rquantity());
+        g.setGoods_Rquantity(Integer.toString(i-1));
+        return goodssqlDao.updateGoodssql(g);
     }
 }

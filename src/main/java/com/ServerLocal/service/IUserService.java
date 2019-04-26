@@ -11,5 +11,6 @@ public interface IUserService {
     public boolean login(String username, String password);
     public List<Graduation_user> selectAlluser();
     public boolean updatepassword(User user);
+    public boolean updatebalance(Graduation_user graduation_user);
 
 }

@@ -30,4 +30,12 @@
         where id=#{id}
     </update>
 
+    <update id="updatebalance" parameterType="com.ServerLocal.model.Graduation_user">
+        update Graduation_user
+        <set>
+            balance=#{balance}
+        </set>
+        where userid=#{userid}
+    </update>
+
 </mapper>
