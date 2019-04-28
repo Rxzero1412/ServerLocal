@@ -166,33 +166,6 @@ public class com extends Thread implements SerialPortEventListener {
                     }
                     //System.out.println(ss);
                 }
-//                try {
-//                    for (int j=0;j<inputStream.length;j++){
-//                        while (inputStream[j].available() > 0) {
-//                            inputStream[j].read(readBuffer);
-//                            s = new String(readBuffer).trim();
-//                            char[] ca=s.toCharArray();
-//                            System.out.println(ca);
-//                            for (int i = 0; i < ca.length; i++) {
-////                                System.out.println(ca);
-////                                System.out.println("length:"+ca.length);
-//                                if((ca[i]>='0'&&ca[i]<='9')||(ca[i]>='A'&&ca[i]<='Z')){
-//                                    if(ca[i]=='U'){
-//                                        if (charcount>1) {
-//                                            String ss=new String(rebuf);
-//                                            if(ss.length()==34) msgQueue.add(ss.substring(22, ss.length()-1));
-//                                        }
-//                                        charcount=0;
-//                                    }
-//                                    rebuf[charcount]=ca[i];
-//                                    charcount++;
-//                                }
-//                            }
-//                            readBuffer = new byte[1000];
-//                        }
-//                    }
-//                } catch (IOException e) {
-//                }
                 break;
         }
     }

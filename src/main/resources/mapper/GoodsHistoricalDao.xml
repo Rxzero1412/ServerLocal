@@ -8,4 +8,8 @@
         VALUES (#{userid},#{goods_count},#{time},#{goods_name},#{goods_price})
     </insert>
 
+    <select id="selectGoodsHistorical" resultType="com.ServerLocal.model.Graduation_Historical">
+        select * from Graduation_Historical
+    </select>
+
 </mapper>

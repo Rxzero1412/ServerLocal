@@ -119,7 +119,7 @@
                 <a href="javascript:;">商品管理</a>
                 <dl class="layui-nav-child">
                     <dd><a href="javascript:;" onclick="showgoodssql()">商品信息管理</a></dd>
-                    <dd><a href="javascript:;">商品销售记录</a></dd>
+                    <dd><a href="javascript:;" onclick="showhistorical()">商品销售记录</a></dd>
                 </dl>
             </li>
 
@@ -127,13 +127,6 @@
                 <a href="javascript:;">用户管理</a>
                 <dl class="layui-nav-child">
                     <dd><a href="javascript:;" onclick="showuser()">查看用户信息</a></dd>
-                </dl>
-            </li>
-
-            <li class="layui-nav-item">
-                <a href="javascript:;">其他管理</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="javascript:;">添加促销信息</a></dd>
                 </dl>
             </li>
 
@@ -165,7 +158,7 @@
                     <a href="javascript:;">监控模块</a>
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:monitorset();">监控设置</a></dd>
-                        <dd><a href="">实时监控</a></dd>
+                        <dd><a href="javascript:motion();">实时监控</a></dd>
                     </dl>
                 </li>
             </ul>
@@ -174,8 +167,9 @@
 
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <div id="mapDiv" style="width: 100%; height: 100%">
-            <iframe id="iframeid" style="width: 100%;height: 100%;" scrolling="no" src="homeimg.jsp"></iframe>
+        <div id="mapDiv" style="width: 100%; height: 100%;">
+            <%--<iframe id="iframeid" style="width: 100%;height: 100%;" scrolling="no" src="homeimg.jsp"></iframe>--%>
+                <iframe id="iframeid" style="width: 100%;height: 100%;" scrolling="yes" src="homeimg.do"></iframe>
         </div>
     </div>
 
@@ -201,6 +195,27 @@
     });
 </script>
 <script type="text/javascript">
+
+    function showhistorical(){
+        $("#iframeid").attr("src", 'http://47.107.160.19:8080/ServerCloud/showhistorical.do');
+    }
+    function motion(){
+        $.ajax({
+            type: "POST",
+            url: "${pageContext.request.contextPath}/motion.do",
+            success: function(request){
+                if(request=="404"){
+                    alert("未添加监控设备或监控设备未开启，请监控设置");
+                }else{
+                    $("#iframeid").attr("src", request);
+                }
+
+            },
+            error:function(){
+            }
+        });
+
+    }
     function Cardreaderset(){
         $("#iframeid").attr("src", '${pageContext.request.contextPath}/cardreadset.do');
     }
@@ -214,7 +229,7 @@
         $("#iframeid").attr("src", '${pageContext.request.contextPath}/showuser.do');
     }
     function showhomeimg(){
-        $("#iframeid").attr("src", '${pageContext.request.contextPath}/homeimg.jsp');
+        $("#iframeid").attr("src", '${pageContext.request.contextPath}/homeimg.do');
     }
     function updatepassword() {
         var password1 = $("#input_password1").val();

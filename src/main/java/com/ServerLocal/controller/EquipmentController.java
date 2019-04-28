@@ -67,6 +67,28 @@ public class EquipmentController {
         return retMap;
     }
 
+
+    @RequestMapping("/motion.do")
+    @ResponseBody
+    public String motion(Model model,HttpServletRequest request) {
+        List<equipment> Listequipment=equipmentService.selectequipment();
+        List<equipment> equipmentlists=new ArrayList<>();
+        for (int i=0;i<Listequipment.size();i++){
+            equipment e=Listequipment.get(i);
+            if (e.getCom().contains("COM")||!e.getName().contains("."));
+            else{
+                if (e.getStatus().equals("1")) equipmentlists.add(e);
+            }
+        }
+
+        String restr="404";
+        if(equipmentlists.size()!=0){
+            equipment re=equipmentlists.get(0);
+            restr="http://"+re.getName()+":"+re.getCom();
+        }
+        return restr;
+    }
+
     /**
      * 删除设备
      * */

@@ -24,7 +24,7 @@
 <div style="height: 100%;width: 100%">
     <script src="js/echarts.min.js"></script>
     <div id="main1" style="width: 500px;height:300px;z-index: 10000;margin-left: 40px;margin-top: 30px;"></div>
-    <div id="main2" style="width: 500px;height:400px;z-index: 20000;margin-left: 620px;margin-top: -350px;"></div>
+    <div id="main2" style="width: 500px;height:300px;z-index: 20000;margin-left: 620px;margin-top: -290px;"></div>
     <div id="main3" style="width: 480px;height:400px;z-index: 30000;margin-left: 40px;margin-top: -40px;"></div>
     <div id="Layer1" style="position:fixed; left:0px; top:0px; width:100%; height:100%;">
         <div style="width:100%; height:100%;z-index: 2000;">
@@ -33,58 +33,99 @@
     </div>
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart1 = echarts.init(document.getElementById('main1'));
-        option1 = {
-            title: {
-                text: '商品销售额',
-                subtext: '按日统计'
-            },
-            tooltip: {
-                trigger: 'axis'
-            },
-            legend: {
-                data:['销售额']
-            },
-            toolbox: {
-                show: true,
-                feature: {
-                    dataZoom: {
-                        yAxisIndex: 'none'
-                    },
-                    dataView: {readOnly: false},
-                    magicType: {type: ['line', 'bar']},
-                    restore: {},
-                    saveAsImage: {}
-                }
-            },
-            xAxis:  {
-                type: 'category',
-                boundaryGap: false,
-                data: ['周一','周二','周三','周四','周五','周六','周日']
-            },
-            yAxis: {
-                type: 'value',
-                axisLabel: {
-                    formatter: '{value} ￥'
-                }
-            },
-            series: [
-                {
-                    name:'销售额',
-                    type:'line',
-                    data:[11, 11, 15, 13, 12, 13, 10],
-                    markPoint: {
-                        data: [
-                            {type: 'max', name: '最大值'},
-                            {type: 'min', name: '最小值'}
-                        ]
-                    }
-                }
-            ]
+        //alert();
+        var sortJson = function(obj, callback) {
+            var endValue, item, key, keyArray, keyArray2, o, _i, _len;
+            endValue = {};
+            keyArray = [];
+            keyArray2 = [];
+            for (key in obj) {
+                o = {};
+                o[key] = obj[key];
+                keyArray.push(key);
+            }
+            keyArray2 = keyArray.sort();
+            for (_i = 0, _len = keyArray2.length; _i < _len; _i++) {
+                item = keyArray2[_i];
+                endValue[item] = obj[item];
+            }
+            return typeof callback === "function" ? callback(endValue) : void 0;
         };
 
-        // 使用刚指定的配置项和数据显示图表。
-        myChart1.setOption(option1);
+        sortJson(${remaps},function(data){
+            console.log(data);
+            var remap=data;
+            var rq=new Array();;
+            var rqdate=new Array();;
+            for(var key in remap){
+                rq.push(key);
+                rqdate.push(remap[key]);
+            }
+            var myChart1 = echarts.init(document.getElementById('main1'));
+            option1 = {
+                title: {
+                    text: '商品销售额',
+                    subtext: '按日统计'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data:['销售额']
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        dataZoom: {
+                            yAxisIndex: 'none'
+                        },
+                        dataView: {readOnly: false},
+                        magicType: {type: ['line', 'bar']},
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                xAxis:  {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: rq
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLabel: {
+                        formatter: '{value} ￥'
+                    }
+                },
+                series: [
+                    {
+                        name:'销售额',
+                        type:'line',
+                        data:rqdate,
+                        markPoint: {
+                            data: [
+                                {type: 'max', name: '最大值'},
+                                {type: 'min', name: '最小值'}
+                            ]
+                        }
+                    }
+                ]
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart1.setOption(option1);
+        });
+
+        var c2date=${regoods};
+        var goodsname=new Array();
+        c2d=[];
+        for(var key in c2date){
+            var json={};
+            goodsname.push(key);
+            json.value=c2date[key];
+            json.name=key;
+            c2d.push(json);
+        }
+
         // 基于准备好的dom，初始化echarts实例
         var myChart2 = echarts.init(document.getElementById('main2'));
         option2 = {
@@ -95,11 +136,11 @@
             legend: {
                 orient: 'vertical',
                 x: 'left',
-                data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+                data:goodsname
             },
             series: [
                 {
-                    name:'访问来源',
+                    name:'商品名',
                     type:'pie',
                     radius: ['50%', '70%'],
                     avoidLabelOverlap: false,
@@ -121,15 +162,7 @@
                             show: false
                         }
                     },
-                    data:[
-                        {value:335, name:'1'},
-                        {value:310, name:'2'},
-                        {value:234, name:'3'},
-                        {value:135, name:'4'},
-                        {value:1548, name:'5'},
-                        {value:335, name:'6'},
-                        {value:1548, name:'0'}
-                    ]
+                    data:c2d
                 }
             ]
         };
